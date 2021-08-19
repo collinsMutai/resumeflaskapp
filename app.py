@@ -1,5 +1,5 @@
 import os, sys
-from flask import Flask, request, abort, jsonify, render_template, redirect, url_for
+from flask import Flask, request, abort, jsonify, render_template, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_wtf import FlaskForm
@@ -9,7 +9,7 @@ from flask_wtf.file import FileField, FileAllowed
 
 
 
-from models import setup_db, Userinput, db_drop_and_create_all
+from models import setup_db, db, Userinput, db_drop_and_create_all
 
 
 
@@ -34,46 +34,52 @@ def create_app(test_config=None):
         response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
         return response
 
-    @app.route('/', methods=['GET'])
-    def home():
-        return jsonify({'message': 'Hello,hello, World!'})  
-    # class Contact(FlaskForm):
-    #     name = StringField('Name')
-    #     phone = StringField('Phone')
-    #     message = StringField('message')
+
+    class Contact(FlaskForm):
+        name = StringField('Name')
+        phone = StringField('Phone')
+        message = StringField('message')
    
 
-    # @app.route('/', methods=['GET', 'POST'])
-    # def index():
+    @app.route('/', methods=['GET', 'POST'])
+    def index():
+        form = Contact()
+        if request.method == 'GET':
+            return render_template('index.html', form=form)
 
-    #     form = Contact(request.form)
+        else:
 
-    #     if form.validate_on_submit():
-   
-    #         name = form.name.data
-    #         phone = form.phone.data
-    #         message = form.message.data
+            name = request.form["name"]
+            phone = request.form["phone"]
+            message = request.form["message"]
 
-    #         newMessage = Userinput(
-    #             name=name,
-    #             phone=phone,
-    #             message=message,
-    #         )
-    #         db.session.add(newMessage)
+            error = False
 
-    #         db.session.commit()
-            
+            try:
+                newMessage = Userinput(name=name,phone=phone,message=message)
+
+                db.session.add(newMessage)
+
+                db.session.commit()
+
+                return render_template('index.html', form=form)
+
+            except:
+                db.session.rollback()
+                error = True
+            finally:
+                db.session.close()
+            if error:
+                
+                flash("An error occurred. Show could not be listed.")
+            else:
+               
+                flash("Show was successfully listed!")
+
+            return render_template('index.html', form=form)
 
 
-
-
-    #     return render_template('index.html', form=form)
-
-
-
-
-
-
+        
 
 
     return app
@@ -83,13 +89,6 @@ app = create_app()
 
 if __name__ == '__main__':
     manager.run()
-
-
-
-
-
-
-
 
 
 
