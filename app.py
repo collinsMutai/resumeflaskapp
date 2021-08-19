@@ -1,5 +1,5 @@
 import os, sys
-from flask import Flask, request, abort, jsonify, render_template, redirect, url_for, flash
+from flask import Flask, request, abort, jsonify, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_wtf import FlaskForm
@@ -60,6 +60,7 @@ def create_app(test_config=None):
             db.session.add(newMessage)
 
             db.session.commit()
+            
 
 
 
@@ -111,7 +112,8 @@ if __name__ == '__main__':
     # heroku config --app flaskresumeapp
 
 
-    # DATABASE_URL: postgres://rkfnxmnomtqvnc:a08200494aaed517993a50024f3780f361e2c35e4cb163e8590e2476e1d93ab0@ec2-52-86-2-228.compute-1.amazonaws.com:5432/df4gkmgu7317r9
+    # DATABASE_URL: postgres://rhllkkpsgvwvco:c86d4df4461a104453300c38e6c21121377cb5d3de3debb6e9aeec4c9144709a@ec2-52-202-152-4.compute-1.amazonaws.com:5432/dem1dl3hkb7hm0
+
 
     # deploy
     # git init

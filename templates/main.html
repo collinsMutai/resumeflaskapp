@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Collins Mutai Resume</title>
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+   </head>
+   <body>
+      <header>
+         <nav>
+            <ul>
+               <li><a href="#about">About</a></li>
+               <li><a href="#projects">Projects</a></li>
+               <li><a href="#skills">Skills</a></li>
+               <li><a href="#education">Education</a></li>
+            </ul>
+         </nav>
+      </header>
+      <main>
+         <section id="about">
+            <div  class="about" >
+               <h1 class="bold">Collins Mutai <br> <span>Fullstack Software Engineer</span></h1>
+               <p>Enthusiastic Frontend Developer eager to contribute to team success through hard work, attention to detail 
+                  and excellent organizational skills. Clear understanding of Frontend web development tools and technologies: 
+                  from  using  HTML5,  CSS3,  and  Bootstrap  to  build  static  websites  to  using  jQuery,  Javascript  and  web 
+                  frameworks such as ReactJS to build fast, scalable web apps. I have also worked with third party application 
+                  Auth0 to manage Role-based Access Control, Flask SqlAlchemy for database management, RESTful principles 
+                  in API development to extensive unit tests for Quality Assurance. I am motivated to learn, grow and excel in 
+                  Frontend Web Development.
+               </p>
+            </div>
+         </section>
+         <!-- skills -->
+         <section id="skills">
+            <h2 class="semi-bold">Skills</h2>
+            <div class="skills">
+               <div class="columns">
+                  <ul>
+                     <li>Html</li>
+                     <li>css</li>
+                     <li>Javascript</li>
+                     <li>BootStrap</li>
+                     <li>ReactJS</li>
+                     <li>JQuery</li>
+                  </ul>
+               </div>
+               <div class="columns">
+                  <ul>
+                     <li>Python</li>
+                     <li>Flask</li>
+                     <li>PostgreSQL</li>
+                     <li>SQLAlchemy</li>
+                     <li>Docker</li>
+                     <li>Kubernetes</li>
+                  </ul>
+               </div>
+               <div class="columns">
+                  <ul>
+                     <li>Amazon EKS</li>
+                     <li>Heroku</li>
+                     <li>Git/GitHub</li>
+                     <li>Auth0</li>
+                     <li>RESTful API's</li>
+                     <li>Search Engine Optimization (SEO)</li>
+                  </ul>
+               </div>
+            </div>
+         </section>
+
+         <!-- projects -->
+         <section id="projects">
+           <div class="projects">
+             <h2 class="semi-bold">Projects</h2>
+             <div class="card-row">
+             <div class="column">
+             
+               <div class="card">
+               <h3>FSND-Deploy-Flask-App-to-Kubernetes-Using-EKS</h3>
+               <p>
+                The project objectives was to deploy a containerized app using AWS’ 
+                Kubernetes service: EKS, create a continuous delivery pipeline with AWS 
+                CodePipeline and set up continuous integration with AWS CodeBuild.
+                The steps involves:
+                - Write a Dockerfile for a simple Flask API containing the image
+                - Build and test the container locally
+                - Create an EKS cluster and IAM Role which Codebuild will use to deploy.
+                - Store a secret using AWS Parameter Store. The secret is a user password and 
+                email stored as a json argument and returned as a JWT token.
+                - Create a CodePipeline pipeline triggered by GitHub checkins.
+                - Create a Code CodeBuild stage which will build, test, and deploy whenever 
+                there's a change in the image.
+               </p>
+             </div>
+            </div>
+
+             <div class="column">
+               <div class="card">
+               <h3>Coffe Shop App</h3>
+               <p>
+                A full stack drink menu application. The goal was to build the backend by 
+adding user accounts and authentication to the application and use role-
+based access management strategies to control different types of user 
+behavior in the app.
+I use Flask to handle requests and responses for the endpoints for each user, 
+then added authentication using Auth0. JWT web tokens stores specific 
+information for each user and allows access to the different endpoints 
+depending on their role.
+               </p>
+             </div>
+            </div>
+
+             <div class="column">
+               <div class="card">
+               <h3>Trivia App</h3>
+               <p>
+                Trivia API is a web app that use APIs to control and manage the data models 
+                in the backend and the application frontend. RESTful principles are followed 
+                throughout the project, including appropriate naming of endpoints, use of 
+                HTTP methods GET, POST, and DELETE to perform CRUD operations on the 
+                psql database.
+                Each endpoint is tested using the unittest library for the expected behavior 
+                and tests for error handling if applicable. The project has a detailed 
+                documentation of API endpoints, including Instructions for how to install 
+                project dependencies and start the project server.
+               </p>
+             </div>
+            </div>
+          </div>
+           </div>
+         </section>
+
+
+
+         <!-- contact -->
+         <section id="contact">
+            <div class="contact" id="myForm">
+              {% block content %}
+              
+            {% endblock %}
+            <div  class="contact-details">
+              <h3>Contact Info</h3>
+              <p>Tel: <a href="tel:+254797759858"> +254797759858</a></p> 
+              <p>Email: <a href="mailto:collinsfrontend@gmail.com"> collinsfrontend@gmail.com</a></p>
+              <p>Location: <a href="#">Nairobi, Kenya</a></p>
+            </div>
+          </div>
+           </section>
+      </main>
+   </body>
+</html>
+
